@@ -84,6 +84,18 @@
     "egulias/email-validator": {
         "version": "2.1.18"
     },
+    "laminas/laminas-code": {
+        "version": "3.4.1"
+    },
+    "laminas/laminas-dependency-plugin": {
+        "version": "1.0.4"
+    },
+    "laminas/laminas-eventmanager": {
+        "version": "3.2.1"
+    },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.0.4"
+    },
     "monolog/monolog": {
         "version": "2.1.1"
     },
@@ -506,11 +518,5 @@
     },
     "webmozart/assert": {
         "version": "1.9.1"
-    },
-    "zendframework/zend-code": {
-        "version": "3.4.1"
-    },
-    "zendframework/zend-eventmanager": {
-        "version": "3.2.1"
     }
 }

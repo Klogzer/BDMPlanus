@@ -10,26 +10,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     /**
-     * @Route("/main", name="main")
+     * @Route("/", name="home")
      */
     public function index()
     {
-        return new Response("<h1>welcome</h1>");
 
-        /**
-        return $this->render('main/index.html.twig', [
-            'controller_name' => 'MainController',
-        ]);
-         **/
+        return $this->render('home/index.html.twig');
     }
 
-    /**
-     * @Route("/customer/{name?}", name="customer")
-     * @param Request $request
-     * @return Response
-     */
-    public function customer(Request $request){
-        return new Response(dump($request)."<h1>Welcome</h1>");
 
-    }
+
 }

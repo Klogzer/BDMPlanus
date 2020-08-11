@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FamilyRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,9 +25,16 @@ class Family
     private $name;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\OneToMany(targetEntity=Character::class, mappedBy="family", orphanRemoval=true)
      */
-    private $characters = [];
+    private $characters;
+
+    public function __construct()
+    {
+        $this->characters = new ArrayCollection();
+    }
+
+
 
     public function getId(): ?int
     {
@@ -44,15 +53,36 @@ class Family
         return $this;
     }
 
-    public function getCharacters(): ?array
+    /**
+     * @return Collection|Character[]
+     */
+    public function getCharacters(): Collection
     {
         return $this->characters;
     }
 
-    public function setCharacters(?array $characters): self
+    public function addCharacter(Character $character): self
     {
-        $this->characters = $characters;
+        if (!$this->characters->contains($character)) {
+            $this->characters[] = $character;
+            $character->setFamily($this);
+        }
 
         return $this;
     }
+
+    public function removeCharacter(Character $character): self
+    {
+        if ($this->characters->contains($character)) {
+            $this->characters->removeElement($character);
+            // set the owning side to null (unless already changed)
+            if ($character->getFamily() === $this) {
+                $character->setFamily(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

@@ -64,6 +64,12 @@ class Character
      */
     private $shoes;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Family::class, inversedBy="characters")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $family;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -173,6 +179,18 @@ class Character
     public function setShoes(?Shoes $shoes): self
     {
         $this->shoes = $shoes;
+
+        return $this;
+    }
+
+    public function getFamily(): ?Family
+    {
+        return $this->family;
+    }
+
+    public function setFamily(?Family $family): self
+    {
+        $this->family = $family;
 
         return $this;
     }

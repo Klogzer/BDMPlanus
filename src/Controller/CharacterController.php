@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Character;
+use App\Form\CharacterFormType;
 use App\Repository\FamilyRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -29,5 +32,40 @@ class CharacterController extends AbstractController
             ]);
         }
         return new Response("family not found");
+    }
+
+    /**
+     * @Route("/create", name="create")
+     * @@param Request $request
+     */
+    public function create(Request $request)
+    {
+        $character = new Character();
+        $character->setName("Give me a name");
+
+
+        $form = $this->createForm(CharacterFormType::class, $character);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // read values back from form
+            $character = $form->getData();
+
+            // get family to update
+            $family = $this->getUser()->getFamily();
+            // relation
+            $family->addCharacter($character);
+            $character->setFamily($family);
+            // persist in DB
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($family);
+            $em->persist($character);
+            $em->flush();
+            return $this->redirectToRoute('character.index');
+
+        }
+
+        return $this->render('family/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

@@ -25,27 +25,27 @@ class Gloves
     /**
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $AttackPower;
+    private $attackPower;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $DefensePower;
+    private $defensePower;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $MaximumMana;
+    private $maximumMana;
 
     /**
      * @ORM\Column(type="decimal", precision=5, scale=2, nullable=true)
      */
-    private $CritChance;
+    private $critChance;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $MagicRegen;
+    private $magicRegen;
 
     public function getId(): ?int
     {
@@ -66,60 +66,60 @@ class Gloves
 
     public function getAttackPower(): ?int
     {
-        return $this->AttackPower;
+        return $this->attackPower;
     }
 
-    public function setAttackPower(?int $AttackPower): self
+    public function setAttackPower(?int $attackPower): self
     {
-        $this->AttackPower = $AttackPower;
+        $this->attackPower = $attackPower;
 
         return $this;
     }
 
     public function getDefensePower(): ?int
     {
-        return $this->DefensePower;
+        return $this->defensePower;
     }
 
-    public function setDefensePower(?int $DefensePower): self
+    public function setDefensePower(?int $defensePower): self
     {
-        $this->DefensePower = $DefensePower;
+        $this->defensePower = $defensePower;
 
         return $this;
     }
 
     public function getMaximumMana(): ?int
     {
-        return $this->MaximumMana;
+        return $this->maximumMana;
     }
 
-    public function setMaximumMana(?int $MaximumMana): self
+    public function setMaximumMana(?int $maximumMana): self
     {
-        $this->MaximumMana = $MaximumMana;
+        $this->maximumMana = $maximumMana;
 
         return $this;
     }
 
     public function getCritChance(): ?string
     {
-        return $this->CritChance;
+        return $this->critChance;
     }
 
-    public function setCritChance(?string $CritChance): self
+    public function setCritChance(?string $critChance): self
     {
-        $this->CritChance = $CritChance;
+        $this->critChance = $critChance;
 
         return $this;
     }
 
     public function getMagicRegen(): ?int
     {
-        return $this->MagicRegen;
+        return $this->magicRegen;
     }
 
-    public function setMagicRegen(?int $MagicRegen): self
+    public function setMagicRegen(?int $magicRegen): self
     {
-        $this->MagicRegen = $MagicRegen;
+        $this->magicRegen = $magicRegen;
 
         return $this;
     }

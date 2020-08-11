@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Family;
+use App\Repository\FamilyRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,11 +17,15 @@ class FamilyController extends AbstractController
 
     /**
      * @Route("/", name="index")
+     * @param FamilyRepository $familyRepository
+     * @return Response
      */
-    public function index()
+    public function index(FamilyRepository $familyRepository)
     {
-        return $this->render('family/index.html.twig', [
-            'controller_name' => 'FamilyController',
+        $family = $familyRepository->find(1);
+
+        return $this->render('family/family.html.twig', [
+            'family' => $family,
         ]);
     }
 

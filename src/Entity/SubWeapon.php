@@ -20,22 +20,22 @@ class SubWeapon
     /**
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $AttackPower;
+    private $attackPower;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $DefensePower;
+    private $defensePower;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $CritChance;
+    private $critChance;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $MoveSpeed;
+    private $moveSpeed;
 
     /**
      * @ORM\Column(type="string", length=60)
@@ -49,48 +49,48 @@ class SubWeapon
 
     public function getAttackPower(): ?int
     {
-        return $this->AttackPower;
+        return $this->attackPower;
     }
 
-    public function setAttackPower(?int $AttackPower): self
+    public function setAttackPower(?int $attackPower): self
     {
-        $this->AttackPower = $AttackPower;
+        $this->attackPower = $attackPower;
 
         return $this;
     }
 
     public function getDefensePower(): ?int
     {
-        return $this->DefensePower;
+        return $this->defensePower;
     }
 
-    public function setDefensePower(?int $DefensePower): self
+    public function setDefensePower(?int $defensePower): self
     {
-        $this->DefensePower = $DefensePower;
+        $this->defensePower = $defensePower;
 
         return $this;
     }
 
     public function getCritChance(): ?int
     {
-        return $this->CritChance;
+        return $this->critChance;
     }
 
-    public function setCritChance(?int $CritChance): self
+    public function setCritChance(?int $critChance): self
     {
-        $this->CritChance = $CritChance;
+        $this->critChance = $critChance;
 
         return $this;
     }
 
     public function getMoveSpeed(): ?int
     {
-        return $this->MoveSpeed;
+        return $this->moveSpeed;
     }
 
-    public function setMoveSpeed(?int $MoveSpeed): self
+    public function setMoveSpeed(?int $moveSpeed): self
     {
-        $this->MoveSpeed = $MoveSpeed;
+        $this->moveSpeed = $moveSpeed;
 
         return $this;
     }

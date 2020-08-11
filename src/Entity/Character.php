@@ -42,7 +42,7 @@ class Character
     /**
      * @ORM\ManyToOne(targetEntity=SubWeapon::class)
      */
-    private $SubWeapon;
+    private $subWeapon;
 
     /**
      * @ORM\ManyToOne(targetEntity=Helmet::class)
@@ -125,12 +125,12 @@ class Character
 
     public function getSubWeapon(): ?SubWeapon
     {
-        return $this->SubWeapon;
+        return $this->subWeapon;
     }
 
-    public function setSubWeapon(?SubWeapon $SubWeapon): self
+    public function setSubWeapon(?SubWeapon $subWeapon): self
     {
-        $this->SubWeapon = $SubWeapon;
+        $this->subWeapon = $subWeapon;
 
         return $this;
     }

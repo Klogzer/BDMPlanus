@@ -19,6 +19,7 @@ jobs:
           envkey_DATABASE_URL: ${{ secrets.DB_URL }}
           envkey_APP_SECRET: ${{ secrets.APP_SECRET }}
           envkey_VAR_DUMPER_FORMAT: 'html'
+          file_name: .env
 
 
       - name: Install Composer

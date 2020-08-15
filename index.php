@@ -7,10 +7,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 
 
-require dirname(__FILE__).'/../vendor/autoload.php';
+require dirname(__FILE__).'/vendor/autoload.php';
 
 
-(new Dotenv())->bootEnv(dirname(__FILE__).'/.env');
+(new Dotenv())->bootEnv(dirname(__FILE__) . '/.env');
 
 if ($_SERVER['APP_DEBUG']) {
     umask(0000);

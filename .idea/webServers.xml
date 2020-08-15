@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="30e20b59-1c1f-4994-aaaa-c7282f6f051e" name="Apache" url="http://localhost">
+        <fileTransfer mountedRoot="C:\xampp\htdocs\symBDMPlaner" accessType="MOUNT" port="0" />
+      </webServer>
+    </option>
+  </component>
+</project>

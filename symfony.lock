@@ -97,7 +97,7 @@
         "version": "1.1.1"
     },
     "egulias/email-validator": {
-        "version": "2.1.18"
+        "version": "2.1.19"
     },
     "laminas/laminas-code": {
         "version": "3.4.1"

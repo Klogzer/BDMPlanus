@@ -14,11 +14,11 @@ jobs:
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v1
         with:
-          APP_ENV: 'prod'
-          APP_DEBOG: '0'
-          DATABASE_URL: ${{ secrets.DB_URL }}
-          APP_SECRET: ${{ secrets.APP_SECRET }}
-          VAR_DUMPER_FORMAT: 'html'
+          envkey_APP_ENV: 'prod'
+          envkey_APP_DEBUG: '0'
+          envkey_DATABASE_URL: ${{ secrets.DB_URL }}
+          envkey_APP_SECRET: ${{ secrets.APP_SECRET }}
+          envkey_VAR_DUMPER_FORMAT: 'html'
 
 
       - name: Install Composer
@@ -33,4 +33,5 @@ jobs:
       
       - name: List output files
         run: find var/ -print
+
 

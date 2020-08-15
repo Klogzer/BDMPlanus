@@ -23,21 +23,22 @@ class FamilyController extends AbstractController
      */
     public function index(FamilyRepository $familyRepository)
     {
-        //$family = $familyRepository->find(0);
         $familyID = $this->getUser()->getFamily();
-        if (!is_null($familyID)) {
-            $family = $familyRepository->find($familyID);
+        //return not found if no family there
+        //reroute to create family
+        if (is_null($familyID)) return $this->redirectToRoute("family.create");
 
-            return $this->render('family/family.html.twig', [
-                'family' => $family,
-            ]);
-        }
-        return new Response("family not found");
+        $family = $familyRepository->find($familyID);
+        return $this->render('family/family.html.twig', [
+            'family' => $family,
+        ]);
+
+
     }
 
     /**
      * @Route("/create", name="create")
-     * @@param  Request $request
+     * @@param Request $request
      */
     public function create(Request $request)
     {
@@ -47,7 +48,7 @@ class FamilyController extends AbstractController
 
         $form = $this->createForm(FamilyFormType::class, $family);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             // read values back from form
             $family = $form->getData();
             // persist in database
@@ -60,23 +61,8 @@ class FamilyController extends AbstractController
 
         }
 
-        return $this->render('family/new.html.twig', [
+        return $this->render('form/new.html.twig', [
             'form' => $form->createView(),
         ]);
-    }
-
-
-    /**
-     * @Route("/{name?}", name="family")
-     * @param Request $request
-     * @return Response
-     */
-    public
-    function family(Request $request)
-    {
-        $name = $request->get('name');
-
-        return $this->render('home/family.html.twig', ['name' => $name]);
-
     }
 }

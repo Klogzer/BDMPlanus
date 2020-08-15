@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Character;
 use App\Form\CharacterFormType;
+use App\Repository\CharacterRepository;
 use App\Repository\FamilyRepository;
+use http\Client\Curl\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -64,8 +66,35 @@ class CharacterController extends AbstractController
 
         }
 
-        return $this->render('family/new.html.twig', [
+        return $this->render('form/new.html.twig', [
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/edit/{name}", name="edit")
+     * @@param Request $request
+     * @@param $name
+     * @@param CharacterRepository $characterRepository
+     * @return Response
+     */
+    public function edit(Request $request, $name, CharacterRepository $characterRepository)
+    {
+        $character = $characterRepository->findOneBy(['family' => $this->getUser()->getFamily(), 'name' => $name]);
+        $form = $this->createForm(CharacterFormType::class, $character);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // read values back from form
+            $character = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($character);
+            $em->flush();
+            return $this->redirectToRoute('character.index');
+        }
+        return $this->render('form/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
 }

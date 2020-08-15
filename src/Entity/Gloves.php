@@ -47,6 +47,12 @@ class Gloves
      */
     private $magicRegen;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=ItemGrade::class, inversedBy="gloves")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $itemGrade;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +126,18 @@ class Gloves
     public function setMagicRegen(?int $magicRegen): self
     {
         $this->magicRegen = $magicRegen;
+
+        return $this;
+    }
+
+    public function getItemGrade(): ?ItemGrade
+    {
+        return $this->itemGrade;
+    }
+
+    public function setItemGrade(?ItemGrade $itemGrade): self
+    {
+        $this->itemGrade = $itemGrade;
 
         return $this;
     }

@@ -1,0 +1,17 @@
+
+
+
+// Generate class map in Prod
+
+--Going to Production
+APP_ENV=prod
+APP_DEBUG=0
+composer install --no-dev --optimize-autoloader
+composer dump-autoload --optimize --no-dev --classmap-authoritative
+php bin/console cache:warmup --env=prod
+
+--Going to Dev
+APP_ENV=dev
+APP_DEBUG=1
+composer install --dev --optimize-autoloader
+composer dump-env dev

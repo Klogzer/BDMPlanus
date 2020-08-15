@@ -2,11 +2,9 @@
 
 
 {% block body %}
-    {{ dump(characters) }}
     <h2>List All characters </h2>
     <table class="table table-striped">
         <tr>
-            <td>ID</td>
             <td>Name</td>
             <td>Level</td>
             <td>Class</td>
@@ -21,8 +19,6 @@
         <tbody>
         {% for character in characters %}
             <tr>
-
-                <td>{{ character.id }}</td>
                 <td>{{ character.name }}</td>
                 <td>{{ character.level }}</td>
                 <td>{{ character.profession.name }}</td>

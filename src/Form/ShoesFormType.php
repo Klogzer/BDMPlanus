@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Shoes;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,6 +20,7 @@ class ShoesFormType extends AbstractType
             ->add('magicRegen')
             ->add('attackSpeed')
             ->add('critChance')
+            ->add('save', SubmitType::class, ['label' => 'submit']);
         ;
     }
 

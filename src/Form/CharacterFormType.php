@@ -2,8 +2,14 @@
 
 namespace App\Form;
 
+use App\Entity\Armor;
 use App\Entity\Character;
 use App\Entity\CharacterProfession;
+use App\Entity\Gloves;
+use App\Entity\Helmet;
+use App\Entity\Shoes;
+use App\Entity\SubWeapon;
+use App\Entity\Weapon;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -18,16 +24,34 @@ class CharacterFormType extends AbstractType
         $builder
             ->add('name')
             ->add('level')
-            ->add('weapon')
             ->add('profession', EntityType::class, [
                 'class' => CharacterProfession::class,
                 'choice_label' => 'name',
             ])
-            ->add('subWeapon')
-            ->add('helmet')
-            ->add('armor')
-            ->add('gloves')
-            ->add('shoes')
+            ->add('weapon', EntityType::class, [
+                'class' => Weapon::class,
+                'choice_label' => 'name',
+            ])
+            ->add('subWeapon', EntityType::class, [
+                'class' => SubWeapon::class,
+                'choice_label' => 'name',
+            ])
+            ->add('helmet', EntityType::class, [
+                'class' => Helmet::class,
+                'choice_label' => 'name',
+            ])
+            ->add('armor', EntityType::class, [
+                'class' => Armor::class,
+                'choice_label' => 'name',
+            ])
+            ->add('gloves', EntityType::class, [
+                'class' => Gloves::class,
+                'choice_label' => 'name',
+            ])
+            ->add('shoes', EntityType::class, [
+                'class' => Shoes::class,
+                'choice_label' => 'name',
+            ])
             ->add('save', SubmitType::class, ['label' => 'submit']);
     }
 

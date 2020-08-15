@@ -5,32 +5,34 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  FTP-Deploy-Action:
+      runs-on: ubuntu-latest
 
-    runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
 
-    steps:
-    - uses: actions/checkout@v2
+      - name: set environment variables
+        uses: allenevans/set-env@v1.0.0
+        with:
+          APP_ENV: 'prod'
+          APP_DEBUg: '0'
 
-    - name: set environment variables
-      uses: allenevans/set-env@v1.0.0
-      with:
-        APP_ENV: 'prod'
-        APP_DEBUg: '0'
-          
-    - name: Install Composer
-      run: composer install --no-dev --optimize-autoloader
+      - name: Install Composer
+        run: composer install --no-dev --optimize-autoloader
+
+      - name: Generate Cache
+        run: composer dump-autoload --optimize --no-dev --classmap-authoritative
+
+      - name: warmup chache
+        run: php bin/console cache:warmup --env=prod
       
-    - name: Generate Cache
-      run: composer dump-autoload --optimize --no-dev --classmap-authoritative
+      - name: List output files
+        run: find var/ -print
 
-    - name: warmup chache
-      run: php bin/console cache:warmup --env=prod
-      
-    - name: FTP-Deploy-Action
-      uses: SamKirkland/FTP-Deploy-Action@3.1.1
-      with:
-        ftp-server: ${{ secrets.FTP_HOST }}
-        ftp-username: ${{ secrets.FTP_USER }}
-        ftp-password: ${{ secrets.FTP_PASSWORD }}
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        with:
+          ftp-server: ${{ secrets.FTP_HOST }}
+          ftp-username: ${{ secrets.FTP_USER }}
+          ftp-password: ${{ secrets.FTP_PASSWORD }}
 

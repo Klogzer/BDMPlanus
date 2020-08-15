@@ -11,15 +11,14 @@ jobs:
       steps:
       - uses: actions/checkout@v2
 
-      - name: Make envfile
-        uses: SpicyPizza/create-envfile@v1
+      - name: set environment variables
+        uses: allenevans/set-env@v1.0.0
         with:
-          INPUT_ENVKEY_APP_ENV: 'prod'
-          envkey_DEBUG: '0'
-          INPUT_ENVKEY_DATABASE_URL: ${{ secrets.DB_URL }}
-          INPUT_ENVKEY_APP_SECRET: ${{ secrets.APP_SECRET }}
-          INPUT_ENVKEY_VAR_DUMPER_FORMAT: 'html'
-          file_name: .env
+          APP_ENV: 'prod'
+          DEBUG: '0'
+          DATABASE_URL: ${{ secrets.DB_URL }}
+          APP_SECRET: ${{ secrets.APP_SECRET }}
+          VAR_DUMPER_FORMAT: 'html'
 
 
       - name: Install Composer

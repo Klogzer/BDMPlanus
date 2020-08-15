@@ -15,7 +15,7 @@ jobs:
         uses: allenevans/set-env@v1.0.0
         with:
           APP_ENV: 'prod'
-          APP_DEBUg: '0'
+          APP_DEBUG: '0'
 
       - name: Install Composer
         run: composer install --no-dev --optimize-autoloader

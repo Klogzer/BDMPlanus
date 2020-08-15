@@ -12,6 +12,17 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install Composer
-      run: composer install
+    - name: Set ENV prod
+      run: APP_ENV=prod
+          
+    - name: Set ENV debug
+      run: APP_DEBUG=0
 
+    - name: Install Composer
+      run: composer install --no-dev --optimize-autoloader
+      
+    - name: Generate Cache
+      run: composer dump-autoload --optimize --no-dev --classmap-authoritative
+
+    - name: warmup chache
+      run: php bin/console cache:warmup --env=prod

@@ -11,7 +11,11 @@ jobs:
       steps:
       - uses: actions/checkout@v2
 
-
+      - name: set environment variables
+        uses: allenevans/set-env@v1.0.0
+        with:
+          APP_ENV: 'prod'
+          DEBUG: '0'
 
       - name: Install Composer
         run: composer install --no-dev --optimize-autoloader
@@ -25,5 +29,12 @@ jobs:
       
       - name: List output files
         run: find var/ -print
+
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        with:
+          ftp-server: ${{ secrets.FTP_HOST }}
+          ftp-username: ${{ secrets.FTP_USER }}
+          ftp-password: ${{ secrets.FTP_PASSWORD }}
 
 

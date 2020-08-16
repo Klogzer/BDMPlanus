@@ -1,4 +1,8 @@
 .env
+.env.test
+readmy
 migration/
 .idea/
 .github/
+.git-ftp-ignore
+.git-ftp-include

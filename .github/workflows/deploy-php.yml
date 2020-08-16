@@ -16,10 +16,6 @@ jobs:
         with:
           APP_ENV: 'prod'
           DEBUG: '0'
-          DATABASE_URL: ${{ secrets.DB_URL }}
-          APP_SECRET: ${{ secrets.APP_SECRET }}
-          VAR_DUMPER_FORMAT: 'html'
-
 
       - name: Install Composer
         run: composer install --no-dev --optimize-autoloader

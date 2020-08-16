@@ -3,16 +3,21 @@
 namespace App\Controller;
 
 use App\Entity\Armor;
+use App\Entity\CharacterProfession;
 use App\Entity\Gloves;
 use App\Entity\Helmet;
 use App\Entity\ItemGrade;
 use App\Entity\Shoes;
 use App\Entity\SubWeapon;
+use App\Entity\Weapon;
 use App\Form\ArmorFormType;
+use App\Form\CharacterProfesstionType;
 use App\Form\GlovesFormType;
 use App\Form\HelmetFormType;
 use App\Form\ItemGradeType;
+use App\Form\ShoesFormType;
 use App\Form\SubWeaponFormType;
+use App\Form\WeaponFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -120,15 +125,48 @@ class EquipmentController extends AbstractController
     }
 
     /**
-     * @Route("/newHelmet", name="newHelmet")
+     * @Route("/newShoes", name="newShoes")
      * @@param Request $request
      */
     public function newShoes(Request $request)
     {
         $shoes = new Shoes();
         $shoes->setName("Give me a name");
-        $form = $this->createForm(Shoes::class, $shoes);
+        $form = $this->createForm(ShoesFormType::class, $shoes);
         if ($this->formIsHandled($request, $form, $shoes)){
+            return $this->redirectToRoute('equipment.index');
+        }
+        return $this->render('form/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+    /**
+     * @Route("/newWeapon", name="newWeapon")
+     * @@param Request $request
+     */
+    public function newWeapon(Request $request)
+    {
+        $weapon = new Weapon();
+        $weapon->setName("Give me a name");
+        $form = $this->createForm(WeaponFormType::class, $weapon);
+        if ($this->formIsHandled($request, $form, $weapon)){
+            return $this->redirectToRoute('equipment.index');
+        }
+        return $this->render('form/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+    // erstmal heir bis ein besserert Ort gefunden wurde
+    /**
+     * @Route("/newProfession", name="newProfession")
+     * @@param Request $request
+     */
+    public function newProfession(Request $request)
+    {
+        $characterProfession = new CharacterProfession();
+        $characterProfession->setName("Give me a name");
+        $form = $this->createForm(CharacterProfesstionType::class, $characterProfession);
+        if ($this->formIsHandled($request, $form, $characterProfession)){
             return $this->redirectToRoute('equipment.index');
         }
         return $this->render('form/new.html.twig', [

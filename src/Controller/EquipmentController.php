@@ -11,7 +11,7 @@ use App\Entity\Shoes;
 use App\Entity\SubWeapon;
 use App\Entity\Weapon;
 use App\Form\ArmorFormType;
-use App\Form\CharacterProfesstionType;
+use App\Form\CharacterProfessionType;
 use App\Form\GlovesFormType;
 use App\Form\HelmetFormType;
 use App\Form\ItemGradeType;
@@ -165,7 +165,7 @@ class EquipmentController extends AbstractController
     {
         $characterProfession = new CharacterProfession();
         $characterProfession->setName("Give me a name");
-        $form = $this->createForm(CharacterProfesstionType::class, $characterProfession);
+        $form = $this->createForm(CharacterProfessionType::class, $characterProfession);
         if ($this->formIsHandled($request, $form, $characterProfession)){
             return $this->redirectToRoute('equipment.index');
         }

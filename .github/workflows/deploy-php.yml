@@ -10,6 +10,8 @@ jobs:
 
       steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 40
 
       - name: set environment variables
         uses: allenevans/set-env@v1.0.0

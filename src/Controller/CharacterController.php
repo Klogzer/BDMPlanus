@@ -42,18 +42,17 @@ class CharacterController extends AbstractController
      */
     public function create(Request $request)
     {
+        $family = $this->getUser()->getFamily();
+        // redirect in case there is no family yet
+        if(empty($family)) return $this->redirectToRoute('family.create');
+
         $character = new Character();
         $character->setName("Give me a name");
-
-
         $form = $this->createForm(CharacterFormType::class, $character);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             // read values back from form
             $character = $form->getData();
-
-            // get family to update
-            $family = $this->getUser()->getFamily();
             // relation
             $family->addCharacter($character);
             $character->setFamily($family);
@@ -81,6 +80,9 @@ class CharacterController extends AbstractController
     public function edit(Request $request, $name, CharacterRepository $characterRepository)
     {
         $character = $characterRepository->findOneBy(['family' => $this->getUser()->getFamily(), 'name' => $name]);
+        // in case there is noch character named like that redirect to create
+        if(empty($character)) return $this->redirectToRoute('character.create');
+
         $form = $this->createForm(CharacterFormType::class, $character);
         $form->handleRequest($request);
 

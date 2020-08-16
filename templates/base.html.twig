@@ -23,37 +23,40 @@
 
 
     {% if app.user %}
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('family.index') }}">Family</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('character.create') }}">New Character</a>
-            </li>
-
-
-            {% endif %}
-            {% if is_granted('ROLE_ADMIN') %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        Admin Stuff
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ path('equipment.newWeapon') }}">new Weapon</a>
-                        <a class="dropdown-item" href="{{ path('equipment.newSubWeapon') }}">new SubWeapon</a>
-                        <a class="dropdown-item" href="{{ path('equipment.newHelmet') }}">new Helmet</a>
-                        <a class="dropdown-item" href="{{ path('equipment.newArmor') }}">new Armor</a>
-                        <a class="dropdown-item" href="{{ path('equipment.newGloves') }}">new Gloves</a>
-                        <a class="dropdown-item" href="{{ path('equipment.newShoes') }}">new Shoes</a>
-                        <a class="dropdown-item" href="{{ path('equipment.newItemGrade') }}">new ItemGrade</a>
-                        <a class="dropdown-item" href="{{ path('equipment.newProfession') }}">new Profession</a>
-                    </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('family.index') }}">Family</a>
                 </li>
-            {% endif %}
-    </div>
+                {% if app.user.getFamily() is not empty %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('character.create') }}">New Character</a>
+                    </li>
+
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Admin Stuff
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ path('equipment.newWeapon') }}">new Weapon</a>
+                            <a class="dropdown-item" href="{{ path('equipment.newSubWeapon') }}">new SubWeapon</a>
+                            <a class="dropdown-item" href="{{ path('equipment.newHelmet') }}">new Helmet</a>
+                            <a class="dropdown-item" href="{{ path('equipment.newArmor') }}">new Armor</a>
+                            <a class="dropdown-item" href="{{ path('equipment.newGloves') }}">new Gloves</a>
+                            <a class="dropdown-item" href="{{ path('equipment.newShoes') }}">new Shoes</a>
+                            <a class="dropdown-item" href="{{ path('equipment.newItemGrade') }}">new ItemGrade</a>
+                            <a class="dropdown-item" href="{{ path('equipment.newProfession') }}">new Profession</a>
+                        </div>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+
+    {% endif %}
     <div class="navbar-collapse collapse dual" id="navbarSupportedContent">
         {% if app.user %}
             <ul class="navbar-nav ml-auto">

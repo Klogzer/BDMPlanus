@@ -39,9 +39,10 @@ jobs:
           ftp-server: ${{ secrets.FTP_HOST }}
           ftp-username: ${{ secrets.FTP_USER }}
           ftp-password: ${{ secrets.FTP_PASSWORD }}
+          git-ftp-args: --dry-run
 
-      - name: generate uprage for db DATABASE
-        run: php bin/console migrations:diff
+      - name: generate uprade for db DATABASE
+        run: php bin/console doctrine:migrations:diff
 
       - name: migrate DATABASE
         run: php bin/console doctrine:migrations:migrate

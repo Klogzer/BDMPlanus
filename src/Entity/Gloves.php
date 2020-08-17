@@ -53,6 +53,11 @@ class Gloves
      */
     private $itemGrade;
 
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=0, nullable=true)
+     */
+    private $attackSpeed;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -138,6 +143,18 @@ class Gloves
     public function setItemGrade(?ItemGrade $itemGrade): self
     {
         $this->itemGrade = $itemGrade;
+
+        return $this;
+    }
+
+    public function getAttackSpeed(): ?string
+    {
+        return $this->attackSpeed;
+    }
+
+    public function setAttackSpeed(?string $attackSpeed): self
+    {
+        $this->attackSpeed = $attackSpeed;
 
         return $this;
     }

@@ -52,6 +52,11 @@ class Shoes
      */
     private $critChance;
 
+    /**
+     * @ORM\Column(type="decimal", precision=5, scale=0, nullable=true)
+     */
+    private $moveSpeed;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +142,18 @@ class Shoes
     public function setCritChance(?string $critChance): self
     {
         $this->critChance = $critChance;
+
+        return $this;
+    }
+
+    public function getMoveSpeed(): ?string
+    {
+        return $this->moveSpeed;
+    }
+
+    public function setMoveSpeed(?string $moveSpeed): self
+    {
+        $this->moveSpeed = $moveSpeed;
 
         return $this;
     }

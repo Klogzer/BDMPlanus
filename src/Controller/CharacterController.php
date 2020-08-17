@@ -92,7 +92,7 @@ class CharacterController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($character);
             $em->flush();
-            return $this->redirectToRoute('character.index');
+            return $this->redirectToRoute('family.index');
         }
         return $this->render('form/new.html.twig', [
             'form' => $form->createView(),

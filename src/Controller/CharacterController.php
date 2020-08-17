@@ -61,7 +61,7 @@ class CharacterController extends AbstractController
             $em->persist($family);
             $em->persist($character);
             $em->flush();
-            return $this->redirectToRoute('character.index');
+            return $this->redirectToRoute('family.index');
 
         }
 

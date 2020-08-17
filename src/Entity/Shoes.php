@@ -57,6 +57,12 @@ class Shoes
      */
     private $moveSpeed;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=ItemGrade::class, inversedBy="shoes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $itemGrade;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +160,18 @@ class Shoes
     public function setMoveSpeed(?string $moveSpeed): self
     {
         $this->moveSpeed = $moveSpeed;
+
+        return $this;
+    }
+
+    public function getItemGrade(): ?ItemGrade
+    {
+        return $this->itemGrade;
+    }
+
+    public function setItemGrade(?ItemGrade $itemGrade): self
+    {
+        $this->itemGrade = $itemGrade;
 
         return $this;
     }

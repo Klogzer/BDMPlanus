@@ -25,6 +25,10 @@ class GlovesFormType extends AbstractType
             ->add('maximumMana')
             ->add('critChance')
             ->add('magicRegen')
+            ->add('itemGrade', EntityType::class, [
+                'class' => ItemGrade::class,
+                'choice_label' => 'name',
+            ])
             ->add('save', SubmitType::class, ['label' => 'submit']);
         ;
     }

@@ -42,6 +42,12 @@ class Weapon
      */
     private $AttackSpeed;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=ItemGrade::class, inversedBy="weapons")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $itemGrade;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +109,18 @@ class Weapon
     public function setAttackSpeed(?int $AttackSpeed): self
     {
         $this->AttackSpeed = $AttackSpeed;
+
+        return $this;
+    }
+
+    public function getItemGrade(): ?ItemGrade
+    {
+        return $this->itemGrade;
+    }
+
+    public function setItemGrade(?ItemGrade $itemGrade): self
+    {
+        $this->itemGrade = $itemGrade;
 
         return $this;
     }

@@ -52,6 +52,12 @@ class Helmet
      */
     private $attackSpeed;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=ItemGrade::class, inversedBy="helmets")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $itemGrade;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +143,18 @@ class Helmet
     public function setAttackSpeed(?string $attackSpeed): self
     {
         $this->attackSpeed = $attackSpeed;
+
+        return $this;
+    }
+
+    public function getItemGrade(): ?ItemGrade
+    {
+        return $this->itemGrade;
+    }
+
+    public function setItemGrade(?ItemGrade $itemGrade): self
+    {
+        $this->itemGrade = $itemGrade;
 
         return $this;
     }

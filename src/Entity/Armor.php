@@ -57,6 +57,12 @@ class Armor
      */
     private $MagicRegen;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=ItemGrade::class, inversedBy="armors")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $ItemGrade;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +160,18 @@ class Armor
     public function setMagicRegen(?int $MagicRegen): self
     {
         $this->MagicRegen = $MagicRegen;
+
+        return $this;
+    }
+
+    public function getItemGrade(): ?ItemGrade
+    {
+        return $this->ItemGrade;
+    }
+
+    public function setItemGrade(?ItemGrade $ItemGrade): self
+    {
+        $this->ItemGrade = $ItemGrade;
 
         return $this;
     }

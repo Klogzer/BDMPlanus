@@ -42,6 +42,12 @@ class SubWeapon
      */
     private $name;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Itemgrade::class, inversedBy="subWeapons")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $itemGrade;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +109,18 @@ class SubWeapon
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getItemGrade(): ?Itemgrade
+    {
+        return $this->itemGrade;
+    }
+
+    public function setItemGrade(?Itemgrade $itemGrade): self
+    {
+        $this->itemGrade = $itemGrade;
 
         return $this;
     }
